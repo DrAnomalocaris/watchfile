@@ -1,0 +1,18 @@
+#! /usr/bin/env bash
+
+FILE=$1
+COMMANDS=$@
+
+LASTMOD=$( stat -c %y $FILE )
+#./$@
+while true; do
+	NEWMOD=$( stat -c %y $FILE )
+	if [[ $LASTMOD != $NEWMOD ]] ; then
+		clear
+		eval "${@:2}"
+		#./$@
+		LASTMOD=$NEWMOD
+	fi
+	sleep 0.5
+done
+
