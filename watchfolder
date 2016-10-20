@@ -9,7 +9,7 @@ while true; do
 	NEWMOD=$( find | xargs stat -c %y  )
 	if [[ $LASTMOD != $NEWMOD ]] ; then
 		clear
-		eval "${@:2}"
+		eval "${@:1}"
 		#./$@
 		LASTMOD=$NEWMOD
 	fi
