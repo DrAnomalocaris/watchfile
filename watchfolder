@@ -1,0 +1,18 @@
+#! /usr/bin/env bash
+
+FILE=$1
+COMMANDS=$@
+
+LASTMOD=$( find | xargs stat -c %y )
+#./$@
+while true; do
+	NEWMOD=$( find | xargs stat -c %y  )
+	if [[ $LASTMOD != $NEWMOD ]] ; then
+		clear
+		eval "${@:2}"
+		#./$@
+		LASTMOD=$NEWMOD
+	fi
+	sleep 0.5
+done
+
